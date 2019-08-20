@@ -1,0 +1,32 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Created</th>
+            <th scope="col">Updated</th>
+            <th scope="col">Actions
+                <button type="button" class="btn btn-success btn-circle btn-link float-right">
+                    <em class="fa fa-plus" aria-hidden="true"></em>
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let user of users">
+            <td>{{user.username}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.created | date :'short'}}</td>
+            <td>{{user.updated | date :'short'}}</td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger"><em class="fa fa-trash" aria-hidden="true"></em></button>
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+</table>

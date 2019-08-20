@@ -1,0 +1,380 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ba-dashboard documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">ba-dashboard documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interceptor">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interceptors</li>
+  <li>MockBackendInterceptor</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/interceptors/MockBackend.interceptor.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>An interceptor to replace backend to test front</p>
+
+            </p>
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#intercept">intercept</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="intercept"></a>
+                    <span class="name">
+                        <b>
+                            intercept
+                        </b>
+                        <a href="#intercept"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>intercept(request: HttpRequest<any>, next: <a href="https://angular.io/api/common/http/HttpHandler" target="_blank">HttpHandler</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/core/interceptors/MockBackend.interceptor.ts:25</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>intercept request and return a fake result</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>request</td>
+                                    <td>
+                                            <code>HttpRequest&lt;any&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>next</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/common/http/HttpHandler" target="_blank" >HttpHandler</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;HttpEvent&lt;any&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from &#x27;@angular/common/http&#x27;;
+import { Observable, of, throwError } from &#x27;rxjs&#x27;;
+import { delay, mergeMap, materialize, dematerialize } from &#x27;rxjs/operators&#x27;;
+import { LoggerService } from &#x27;../logger/logger.service&#x27;;
+import { User } from &#x27;src/app/users/shared/user.model&#x27;;
+import { HelperString } from &#x27;src/app/_helpers/string.hepler&#x27;;
+
+/**
+ * An interceptor to replace backend to test front
+ */
+@Injectable()
+export class MockBackendInterceptor implements HttpInterceptor {
+
+    /**
+     * @ignore
+     */
+    constructor(public logger: LoggerService) {
+        logger.warn(&#x60;Mock Backend is enable&#x60;);
+    }
+
+    /**
+     * intercept request and return a fake result
+     */
+    intercept(request: HttpRequest&lt;any&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;any&gt;&gt; {
+
+
+        const users: User[] &#x3D; [
+            {
+                id: 1,
+                firstName: &#x27;Test&#x27;,
+                auth: { login: &#x27;test&#x27; },
+                lastName: &#x27;User&#x27;,
+                created: new Date(),
+                updated: new Date(),
+                version: 1
+            }
+        ];
+
+
+
+        const { url, method } &#x3D; request; // can add header and body
+
+        // const authHeader &#x3D; headers.get(&#x27;Authorization&#x27;);
+        // const isLoggedIn &#x3D; authHeader &amp;&amp; authHeader.startsWith(&#x27;Bearer fake-jwt-token&#x27;);
+
+        // const pipe &#x3D; new DatePipe(&#x27;en-US&#x27;);
+        this.logger.info(&#x60;${HelperString.CompleteString(&#x60;(${method})&#x60;, 6, &#x27; &#x27;)} ${url}&#x60;);
+
+        return of(null)
+            .pipe(mergeMap(handleRoute))
+            .pipe(materialize())
+            .pipe(delay(50))
+            .pipe(dematerialize());
+
+        function handleRoute() {
+            switch (true) {
+                case url.endsWith(&#x27;auth/login&#x27;) &amp;&amp; method &#x3D;&#x3D;&#x3D; &#x27;POST&#x27;:
+                    return login();
+                case url.endsWith(&#x27;/users&#x27;) &amp;&amp; request.method &#x3D;&#x3D;&#x3D; &#x27;GET&#x27;:
+                    return getUsers();
+                default:
+                    // pass through any requests not handled above
+                    return next.handle(request);
+            }
+        }
+
+        // TODO CHANGE
+        // route functions
+
+        function login() {
+
+            const user &#x3D; users.find(x &#x3D;&gt; x.auth.login &#x3D;&#x3D;&#x3D; request.body.username &amp;&amp; &#x27;test&#x27; &#x3D;&#x3D;&#x3D; request.body.password);
+            if (!user) {
+                return error(&#x27;Username or password is incorrect&#x27;);
+            }
+            user.auth.token &#x3D; &#x60;fake-jwt-token&#x60;;
+            localStorage.setItem(&#x27;currentUser&#x27;, JSON.stringify(user.auth));
+            return ok(user.auth);
+        }
+
+        function getUsers() {
+            if (!JSON.parse(localStorage.getItem(&#x27;currentUser&#x27;))) {
+                return unauthorized(&#x27;User currently not logged&#x27;);
+            }
+            console.log(users);
+            return ok(JSON.stringify(users));
+        }
+
+
+        // helper functions
+
+        function ok(pBody?: any) {
+            return of(new HttpResponse({ status: 200, body: pBody }));
+        }
+
+        function error(message: any) {
+            return throwError({ status: 400, message });
+        }
+
+        function unauthorized(message: any) {
+            return throwError({ status: 401, message });
+        }
+
+
+
+        function idFromUrl() {
+            const urlParts &#x3D; url.split(&#x27;/&#x27;);
+            return parseInt(urlParts[urlParts.length - 1], 10);
+        }
+    }
+}
+
+/**
+ * Provider of MockBackend interceptor
+ */
+export const MockBackendProvider &#x3D; {
+    // use fake backend in place of Http service for backend-less development
+    provide: HTTP_INTERCEPTORS,
+    useClass: MockBackendInterceptor,
+    multi: true
+};
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interceptor';
+            var COMPODOC_CURRENT_PAGE_URL = 'MockBackendInterceptor.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

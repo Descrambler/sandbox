@@ -1,0 +1,62 @@
+variables:
+  CLI_VERSION: 8.1.1
+
+image: weboaks/node-karma-protractor-chrome:alpine
+
+stages:
+  - test
+  - build
+
+cache:
+  untracked: true
+  key: "$CI_BUILD_REF_NAME"
+  paths:
+  - node_modules/
+
+before_script:
+  - npm install
+
+test:karma:
+  stage: test
+  #image: trion/ng-cli-karma:${CLI_VERSION}
+  #image: registry.gitlab.com/arnaudbois.pro/ba-dashboard:latest
+  allow_failure: false
+  script:
+    - npm run test:ci
+  coverage: /All files\s*\|\s*([\d\.]+)/
+  artifacts:
+    paths:
+      - coverage/
+  tags:
+    - docker
+
+test:e2e:
+  stage: test
+  #image: trion/ng-cli-e2e:${CLI_VERSION}
+  #image: registry.gitlab.com/arnaudbois.pro/ba-dashboard:latest
+  allow_failure: true
+  script:
+    - npm run e2e
+  tags:
+    - docker
+test:nglint:
+  stage: test
+  #image: node:alpine
+  #image: registry.gitlab.com/arnaudbois.pro/ba-dashboard:latest
+  script:
+    - npm run lint
+  tags:
+    - docker
+
+build:
+  stage: build
+  #image: node:alpine
+  #image: registry.gitlab.com/arnaudbois.pro/ba-dashboard:latest
+  script:
+    - npm run build:prod
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - dist/
+  tags:
+    - docker

@@ -1,0 +1,7 @@
+@mixin set-card-color($bkg-color, $bkg-icon-color, $font-color) {
+  background-color: $bkg-color;
+  &.card-detail .card-detail-icon .icon {
+    color: $font-color;
+    background-color: $bkg-icon-color;
+  }
+}

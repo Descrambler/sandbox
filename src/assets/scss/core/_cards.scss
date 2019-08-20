@@ -1,0 +1,76 @@
+.card{
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    margin-bottom: 24px;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,.25);
+    &.card-detail{
+        flex-direction: row;
+        align-items: center;
+        border: none;
+        min-height: 100px;
+        .card-body-detail{
+            margin: 0;
+            padding: 0;
+        }
+    
+        .card-detail-icon{
+            min-height: 100px;
+            padding-left:15px;
+
+            .icon{
+                color:#fff;
+                font-size: 35px;
+                background-color: #36f;
+                border-radius: .25rem;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 5.75rem;
+                height: 100%;
+                transition: width .4s ease;
+            }
+    
+
+        }
+        
+        .card-detail-content{
+            padding-left:20px;
+            width: 70%;
+            h1{
+                @include ellipsis;
+                padding-top: 25px;
+                margin-bottom: 0;
+            }
+            h2{
+                padding-left: 15px;
+                font-size: 0.8rem;
+            }
+        }
+
+
+       
+    }
+
+    &[card-color="blue"]{
+        @include set-card-color($white-color,$card-icon-bkg-color-blue,$white-color);
+    }
+    &[card-color="green"]{
+        @include set-card-color($white-color,$card-icon-bkg-color-green,$white-color);
+    }
+    &[card-color="yellow"]{
+        @include set-card-color($white-color,$card-icon-bkg-color-yellow,$white-color);
+    }
+    &[card-color="red"]{
+        @include set-card-color($white-color,$card-icon-bkg-color-red,$white-color);
+    }
+    &[card-color="purple"]{
+        @include set-card-color($white-color,$card-icon-bkg-color-purple,$white-color);
+    }
+
+
+}
+

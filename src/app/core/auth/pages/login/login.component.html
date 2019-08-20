@@ -1,0 +1,29 @@
+<div class="main text-center">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-signin">
+        <img src="assets/img/person-icons-login.png" alt="" width="150" height="150">
+        <h1 class="h3 mb-3 font-weight-normal">Log in to your account</h1>
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" formControlName="username" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="{{ submitted && f.username.errors && f.username.errors.required ? 'Username is required' : 'Username'}}" />
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="{{ submitted && f.password.errors && f.password.errors.required ? 'Password is required' : 'Password'}}" />
+        <div class="checkbox mb-3">
+            <label class="pull-left">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" formControlName="remember">
+                    <label class="custom-control-label" for="remember">Remember me</label>
+                </div>
+            </label>
+            <label class="pull-right">
+                <a routerLink="/resetPassword">Forgot password ?</a>
+            </label>
+        </div>
+        <button [disabled]="loading" class="btn btn-lg btn-primary btn-block">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Sign in
+        </button>
+        <p class="mt-5 mb-3 ">Need an account ? <a routerLink="/register">Sign up</a></p>
+
+    </form>
+</div>

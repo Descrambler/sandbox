@@ -1,0 +1,34 @@
+<div class="logo">
+    <a href="http://boisarnaud.fr" class="simple-text">
+        <div class="logo-img">
+            <img src="/assets/img/angular2-logo-red.png" alt="angular logo" />
+        </div>
+        Bois Arnaud
+    </a>
+</div>
+<div class="sidebar-wrapper">
+    <ul class="nav">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+            true}" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a *ngIf="!menuItem.children" class="nav-link" [routerLink]="[menuItem.path]">
+                <em [class]="menuItem.icon"></em>
+                <p>{{menuItem.title}}</p>
+            </a>
+            <a *ngIf="menuItem.children" class="nav-link collapsed" href="#collapseExample" data-toggle="collapse"
+                aria-haspopup="true" aria-expanded="false">
+                <em [class]="menuItem.icon"></em>
+                <p class>{{menuItem.title}}
+                    <em class="fa fa-chevron-right pull-right"></em>
+                </p>
+            </a>
+            <div class="collapse" id="collapseExample" *ngFor="let child of menuItem.children" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact:
+                true}">
+                <a class="dropdown-item" [routerLink]="[child.path]">
+                    <em [class]="child.icon"></em>
+                    <p>{{child.title}}</p>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
