@@ -3,7 +3,7 @@ sudo: false
 
 language: node_js
 node_js:
-  - "8"
+  - "12"
 
 addons:
   apt:
@@ -21,4 +21,3 @@ install:
 
 script:
   - npm run test -- --watch=false --progress=false --browsers=Chromium_no_sandbox
-  - npm run e2e -- --protractor-config=./e2e/protractor-ci.conf.js
